@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>힐링송 소개 - 마음을 채우는 노래</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+<style>
+    /* CSS 변수 선언 */
+    :root {
+        --color-primary: #f2a65a;
+        --color-secondary: #b0c4de;
+        --color-tertiary: #f0f8ff;
+        --color-text-light: #fff8e1;
+        --color-text-dark: #333;
+        --color-card-bg: rgba(255, 255, 255, 0.9);
+        --shadow-light: 0 5px 15px rgba(0,0,0,0.2);
+        --shadow-strong: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* 전체 스타일 및 폰트 */
+    body {
+        margin: 0;
+        font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative; 
+    }
+
+    /* 페이지 상단 소개 문구 */
+    header {
+        text-align: center;
+        padding: 50px 20px 20px 20px;
+        color: var(--color-text-light);
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 10;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    /* 카드 컨테이너 */
+    .card-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; 
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+    
+    /* 링크 스타일 공통 */
+    .music-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        border-radius: 15px;
+        box-shadow: var(--shadow-strong);
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+        width: 100%;
+        /* 🎯 변경: 카드의 최대 너비를 약 두 배로 키웁니다. */
+        max-width: 700px; /* 기존 350px -> 700px */
+        position: absolute;
+        z-index: 5;
+    }
+
+    .music-link:hover {
+        transform: translateY(-5px) scale(1.01); /* 크기 자체가 커졌으므로 scale을 약간 줄여 자연스럽게 */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+
+    /* 첫 번째 곡 위치: 왼쪽 상단 (Top: 100px, Left: 100px) */
+    .music-link:nth-child(1) {
+        top: 100px; 
+        left: 100px;
+        transform: none; 
+    }
+
+    /* 두 번째 곡 위치: 오른쪽 상단 (Top: 100px, Right: 100px) */
+    .music-link:nth-child(2) {
+        top: 100px; 
+        right: 100px;
+        left: auto; 
+        transform: none; 
+    }
+
+    /* 썸네일 */
+    .music-card img {
+        width: 100%;
+        /* 🎯 변경: 썸네일 이미지 높이를 두 배로 키웁니다. */
+        height: 400px; /* 기존 200px -> 400px */
+        object-fit: cover;
+        display: block;
+    }
+
+    /* 카드 설명 박스 */
+    .music-info {
+        padding: 30px; /* 패딩도 약간 늘려 내용이 더 잘 보이도록 */
+        background: var(--color-card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .music-info h2 {
+        margin: 0 0 10px 0; /* 마진도 약간 늘려 여백 확보 */
+        /* 🎯 변경: 제목 폰트 크기를 키웁니다. */
+        font-size: 2rem; /* 기존 1.3rem -> 2rem */
+        color: #2c3e50;
+    }
+
+    .music-info p {
+        margin: 8px 0; /* 마진도 약간 늘려 여백 확보 */
+        /* 🎯 변경: 설명 폰트 크기를 키웁니다. */
+        font-size: 1.2rem; /* 기존 0.9rem -> 1.2rem */
+        color: var(--color-text-dark);
+    }
+
+    .music-info p:last-child {
+        margin-top: 15px; /* 마지막 단락 상단 마진도 늘립니다. */
+        font-style: italic;
+        color: #555;
+    }
+    
+    /* 반응형: 작은 화면에서 카드가 너무 커지지 않도록 조정 */
+    @media screen and (max-width: 1400px) { /* 더 큰 화면 크기에서부터 반응형 조정 시작 */
+        .music-link {
+            max-width: 500px; /* 화면이 작아지면 카드를 다시 줄입니다. */
+        }
+        .music-card img {
+            height: 300px;
+        }
+        .music-info h2 {
+            font-size: 1.6rem;
+        }
+        .music-info p {
+            font-size: 1.1rem;
+        }
+
+        .music-link:nth-child(1) {
+            top: 50px; 
+            left: 50px;
+        }
+        .music-link:nth-child(2) {
+            top: 50px; 
+            right: 50px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .music-link {
+            max-width: 90%; /* 모바일에서는 화면 너비의 90%를 차지하도록 */
+            left: 50% !important; /* 중앙 정렬 */
+            right: auto !important; /* 오른쪽 정렬 해제 */
+            transform: translateX(-50%) !important; /* 정확히 중앙 정렬 */
+        }
+        .music-card img {
+            height: 250px; /* 모바일에서 이미지 높이 재조정 */
+        }
+        .music-info h2 {
+            font-size: 1.4rem;
+        }
+        .music-info p {
+            font-size: 1rem;
+        }
+
+        .music-link:nth-child(1) {
+            top: 100px; /* 모바일에서 위치 재조정 */
+        }
+        .music-link:nth-child(2) {
+            top: 400px; /* 모바일에서 겹치지 않도록 아래로 이동 */
+        }
+    }
+</style>
+</head>
+<body>
+
+<header role="banner">
+    <h1>가을에서 겨울로, 마음을 채우는 두 곡</h1>
+</header>
+
+<main class="card-container">
+
+    <a href="https://www.youtube.com/watch?v=SAcNXD4MAcs" target="_blank" class="music-link">
+        <article class="music-card">
+            <img src="cry 썸네일 사진.jpeg" alt="Vibe Tracks의 Cry 앨범 커버" loading="lazy">
+            <div class="music-info">
+                <h2>Cry</h2>
+                <p><strong>아티스트:</strong> Vibe Tracks</p>
+                <p><strong>설명:</strong> 부드럽고 감성적인 분위기, 마음을 차분하게 만들어 줍니다.</p>
+            </div>
+        </article>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=EKkzbbLYPuI" target="_blank" class="music-link">
+        <article class="music-card">
+            <img src="carol of the bells 썸네일 사진.jpg" alt="Lindsey Stirling의 Carol of the Bells 앨범 커버" loading="lazy">
+            <div class="music-info">
+                <h2>Carol of the Bells</h2>
+                <p><strong>아티스트:</strong> Lindsey Stirling</p>
+                <p><strong>설명:</strong> 크리스마스 분위기를 담은 곡으로, 설레는 겨울 느낌을 만끽할 수 있습니다.</p>
+            </div>
+        </article>
+    </a>
+
+</main>
+
+</body>
+</html>

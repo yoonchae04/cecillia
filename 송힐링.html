@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>힐링송 소개</title>
+<style>
+  /* 전체 배경 */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #f2a65a, #b0c4de, #f0f8ff);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* 페이지 상단 소개 문구 */
+  header {
+    text-align: center;
+    padding: 50px 20px 20px 20px;
+    color: #fff8e1;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  }
+
+  header h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  /* 음악 카드 공통 스타일 */
+  .music-card {
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    margin: 50px auto;
+    transition: transform 0.3s;
+  }
+
+  .music-card:hover {
+    transform: scale(1.05);
+  }
+
+  /* 썸네일 */
+  .music-card img {
+    width: 100%;
+    display: block;
+  }
+
+  /* 카드 설명 박스 */
+  .music-info {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .music-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+  }
+
+  .music-info p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  /* 사선 배치 */
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container .card-left {
+    margin-left: 50px;
+  }
+
+  .card-container .card-right {
+    margin-left: auto;
+    margin-right: 50px;
+  }
+
+  /* 반응형 */
+  @media screen and (max-width: 768px) {
+    .card-container .card-left,
+    .card-container .card-right {
+      margin: 20px auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>가을에서 겨울로, 마음을 채우는 두 곡</h1>
+</header>
+
+<div class="card-container">
+
+  <!-- 첫 번째 곡: Cry -->
+  <div class="music-card card-left">
+    <img src="https://via.placeholder.com/300x200?text=Cry+Thumbnail" alt="Cry Thumbnail">
+    <div class="music-info">
+      <h2>Cry</h2>
+      <p>Vibe Tracks</p>
+      <p>부드럽고 감성적인 분위기, 마음을 차분하게</p>
+    </div>
+  </div>
+
+  <!-- 두 번째 곡: Carol of the Bells -->
+  <div class="music-card card-right">
+    <img src="https://via.placeholder.com/300x200?text=Carol+of+the+Bells+Thumbnail" alt="Carol Thumbnail">
+    <div class="music-info">
+      <h2>Carol of the Bells</h2>
+      <p>Lindsey Stirling</p>
+      <p>크리스마스 분위기, 설레는 겨울 느낌</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

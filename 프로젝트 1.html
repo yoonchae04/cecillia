@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>힐링송 소개 - 마음을 채우는 노래</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+<style>
+    /* CSS 변수 선언 */
+    :root {
+        --color-primary: #f2a65a; /* 배경 상단 오렌지 */
+        --color-secondary: #b0c4de; /* 배경 중앙 연한 파랑 */
+        --color-tertiary: #f0f8ff; /* 배경 하단 아이보리 */
+        --color-text-light: #fff8e1; /* 헤더 텍스트 색상 */
+        --color-text-dark: #333; /* 본문 텍스트 색상 */
+        --color-card-bg: rgba(255, 255, 255, 0.9); /* 카드 배경 (불투명도 약간 증가) */
+        --shadow-light: 0 5px 15px rgba(0,0,0,0.2);
+        --shadow-strong: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* 전체 스타일 및 폰트 */
+    body {
+        margin: 0;
+        /* 한국어 지원을 위해 Noto Sans KR 추가 */
+        font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* 페이지 상단 소개 문구 */
+    header {
+        text-align: center;
+        padding: 50px 20px 20px 20px;
+        color: var(--color-text-light);
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+        font-size: 2.2rem; /* 폰트 크기 약간 증가 */
+        margin: 0;
+        font-weight: 700;
+    }
+
+    /* 음악 카드 컨테이너 - Flexbox를 활용한 중앙 정렬 및 간격 확보 */
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        /* 카드 사이의 간격 지정 */
+        gap: 30px; 
+        /* 컨테이너 전체의 중앙 정렬을 위해 max-width와 margin: auto 사용 */
+        max-width: 600px;
+        margin: 30px auto 100px auto; 
+        padding: 0 20px; /* 좌우 패딩 */
+    }
+
+    /* 음악 카드 공통 스타일 */
+    .music-card {
+        width: 100%; /* 컨테이너 너비에 맞게 조정 */
+        max-width: 350px; /* 카드의 최대 너비 설정 */
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow-strong);
+        transition: transform 0.3s, box-shadow 0.3s;
+        /* 카드 자체 중앙 정렬 */
+        align-self: center; 
+    }
+
+    .music-card:hover {
+        transform: translateY(-5px) scale(1.02); /* Y축 이동 추가로 입체감 강화 */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    /* 썸네일 */
+    .music-card img {
+        width: 100%;
+        height: 200px; /* 고정 높이 지정 */
+        object-fit: cover; /* 이미지 비율 유지 및 영역 채우기 */
+        display: block;
+    }
+
+    /* 카드 설명 박스 */
+    .music-info {
+        padding: 20px; /* 패딩 증가 */
+        background: var(--color-card-bg);
+        border-top: 1px solid rgba(0,0,0,0.05); /* 경계선 추가 */
+    }
+
+    .music-info h2 {
+        margin: 0 0 5px 0;
+        font-size: 1.3rem; /* 폰트 크기 약간 증가 */
+        color: #2c3e50; /* 제목 색상 강조 */
+    }
+
+    .music-info p {
+        margin: 5px 0;
+        font-size: 0.9rem;
+        color: var(--color-text-dark);
+    }
+
+    .music-info p:last-child {
+        margin-top: 10px;
+        font-style: italic;
+        color: #555;
+    }
+    
+    /* 사선 배치 (769px 이상 화면) */
+    @media screen and (min-width: 769px) {
+        .card-container {
+            max-width: 900px; /* 넓은 화면에서 컨테이너 너비 증가 */
+            align-items: flex-start; /* 카드를 왼쪽 정렬 */
+        }
+        
+        .card-container .music-card {
+            max-width: 380px;
+        }
+
+        /* 짝수 번째(두 번째) 카드를 오른쪽으로 밀기 */
+        .card-container .music-card:nth-child(even) {
+            align-self: flex-end; /* 오른쪽 정렬 */
+            margin-right: 50px; /* 오른쪽 여백 추가 */
+        }
+        
+        /* 홀수 번째(첫 번째) 카드를 왼쪽으로 밀기 */
+        .card-container .music-card:nth-child(odd) {
+            margin-left: 50px; /* 왼쪽 여백 추가 */
+        }
+    }
+</style>
+</head>
+<body>
+
+<header role="banner">
+    <h1>가을에서 겨울로, 마음을 채우는 두 곡</h1>
+</header>
+
+<main class="card-container">
+
+    <article class="music-card">
+        <img src="cry 썸네일 사진.jpeg" alt="Vibe Tracks의 Cry 앨범 커버" loading="lazy">
+        <div class="music-info">
+            <h2>Cry</h2>
+            <p><strong>아티스트:</strong> Vibe Tracks</p>
+            <p><strong>설명:</strong> 부드럽고 감성적인 분위기, 마음을 차분하게 만들어 줍니다.</p>
+        </div>
+    </article>
+
+    <article class="music-card">
+        <img src="carol of the bells 썸네일 사진.jpg" alt="Lindsey Stirling의 Carol of the Bells 앨범 커버" loading="lazy">
+        <div class="music-info">
+            <h2>Carol of the Bells</h2>
+            <p><strong>아티스트:</strong> Lindsey Stirling</p>
+            <p><strong>설명:</strong> 크리스마스 분위기를 담은 곡으로, 설레는 겨울 느낌을 만끽할 수 있습니다.</p>
+        </div>
+    </article>
+
+</main>
+
+</body>
+</html>
