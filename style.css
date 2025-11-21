@@ -1,0 +1,213 @@
+/* ==================================== */
+/* 0. CSS 변수 설정 (Custom Properties) */
+/* ==================================== */
+:root {
+    /* 배경 그라데이션 색상 */
+    --color-primary: #f2a65a;       /* 배경 상단 (오렌지 계열) */
+    --color-secondary: #b0c4de;     /* 배경 중앙 (연한 파랑 계열) */
+    --color-tertiary: #f0f8ff;      /* 배경 하단 (아이보리/흰색 계열) */
+
+    /* 텍스트 색상 */
+    --color-text-light: #fff8e1;    /* 헤더 텍스트 색상 */
+    --color-text-dark: #333;        /* 본문 일반 텍스트 색상 */
+    --color-heading: #2c3e50;       /* 카드 제목 텍스트 색상 */
+
+    /* 카드 배경 및 그림자 */
+    --color-card-bg: rgba(255, 255, 255, 0.9); /* 카드 배경 (불투명한 흰색) */
+    --shadow-strong: 0 10px 20px rgba(0,0,0,0.3); /* 일반 그림자 효과 */
+}
+
+
+/* ==================================== */
+/* 1. 기본 및 전체 레이아웃 설정 */
+/* ==================================== */
+body {
+    margin: 0;
+    /* 폰트 설정 (Noto Sans KR이 설치된 경우 먼저 사용) */
+    font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* 배경 그라데이션 적용 */
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+    min-height: 100vh; /* 뷰포트 전체 높이를 차지하도록 설정 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+    position: relative; /* 절대 위치 요소(카드)의 기준점 */
+}
+
+/* 페이지 상단 제목 영역 */
+header {
+    text-align: center;
+    padding: 50px 20px 20px 20px;
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10; /* 카드가 위에 떠 있어도 제목이 가려지지 않게 함 */
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+
+/* ==================================== */
+/* 2. 카드 컨테이너 및 링크 스타일 (절대 위치 기반) */
+/* ==================================== */
+.card-container {
+    /* body를 기준으로 전체 뷰포트를 커버하도록 설정 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+/* 카드 전체를 감싸는 하이퍼링크 요소 */
+.music-link {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 글자색 상속 (파란색 링크 색상 방지) */
+    display: block;
+    border-radius: 15px;
+    box-shadow: var(--shadow-strong);
+    transition: transform 0.3s, box-shadow 0.3s; /* 호버 애니메이션 */
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px; /* 카드 최대 너비 (기존 350px의 약 두 배) */
+    position: absolute; /* card-container를 기준으로 위치 지정 */
+    z-index: 5;
+}
+
+/* 마우스 오버 시 입체 효과 */
+.music-link:hover {
+    transform: translateY(-5px) scale(1.01); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+/* ------------------ */
+/* 2.1. 개별 카드 위치 설정 (절대 위치) */
+/* ------------------ */
+
+/* 첫 번째 곡 (Cry) 위치: 왼쪽 상단 모서리 기준 */
+.music-link:nth-child(1) {
+    top: 100px; /* 상단에서 100px 아래 */
+    left: 100px; /* 왼쪽에서 100px 오른쪽 */
+    transform: none; 
+}
+
+/* 두 번째 곡 (Carol of the Bells) 위치: 오른쪽 상단 모서리 기준 */
+.music-link:nth-child(2) {
+    top: 100px; /* 상단에서 100px 아래 */
+    right: 100px; /* 오른쪽에서 100px 왼쪽 */
+    left: auto; /* left 속성 초기화 */
+    transform: none; 
+}
+
+
+/* ==================================== */
+/* 3. 카드 내부 요소 스타일 */
+/* ==================================== */
+
+/* 카드 내부 <article> 요소 */
+.music-card {
+    width: 100%;
+    max-width: 700px; /* music-link의 max-width와 일치 */
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* 썸네일 이미지 스타일 */
+.music-card img {
+    width: 100%;
+    height: 400px; /* 이미지 높이 (기존 200px의 두 배) */
+    object-fit: cover; /* 이미지 비율 유지 및 영역 채우기 */
+    display: block;
+}
+
+/* 카드 정보 (제목, 아티스트, 설명) 박스 */
+.music-info {
+    padding: 30px;
+    background: var(--color-card-bg);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* 제목 (h2) 스타일 */
+.music-info h2 {
+    margin: 0 0 10px 0;
+    font-size: 2rem; /* 제목 폰트 크기 확대 */
+    color: var(--color-heading);
+}
+
+/* 일반 단락 (아티스트, 설명) 스타일 */
+.music-info p {
+    margin: 8px 0;
+    font-size: 1.2rem; /* 일반 텍스트 폰트 크기 확대 */
+    color: var(--color-text-dark);
+}
+
+/* 마지막 설명 단락 스타일 */
+.music-info p:last-child {
+    margin-top: 15px;
+    font-style: italic;
+    color: #555;
+}
+
+
+/* ==================================== */
+/* 4. 반응형 디자인 (화면 크기별 조정) */
+/* ==================================== */
+
+/* 1400px 이하의 화면 크기 */
+@media screen and (max-width: 1400px) { 
+    .music-link {
+        max-width: 500px; /* 카드 크기를 줄여 공간 확보 */
+    }
+    .music-card img {
+        height: 300px; /* 이미지 높이 조정 */
+    }
+    .music-info h2 {
+        font-size: 1.6rem;
+    }
+    .music-info p {
+        font-size: 1.1rem;
+    }
+
+    /* 위치 조정 */
+    .music-link:nth-child(1) {
+        top: 50px; 
+        left: 50px;
+    }
+    .music-link:nth-child(2) {
+        top: 50px; 
+        right: 50px;
+    }
+}
+
+/* 768px 이하의 모바일 화면 크기 */
+@media screen and (max-width: 768px) {
+    .music-link {
+        max-width: 90%; /* 화면 너비의 90%만 사용 */
+        left: 50% !important; /* 중앙 정렬 */
+        right: auto !important; /* 오른쪽 정렬 무효화 */
+        transform: translateX(-50%) !important; /* 정확히 중앙에 오도록 이동 */
+    }
+    .music-card img {
+        height: 250px; /* 이미지 높이 추가 조정 */
+    }
+    .music-info h2 {
+        font-size: 1.4rem;
+    }
+    .music-info p {
+        font-size: 1rem;
+    }
+
+    /* 겹치지 않도록 수직으로 배치 */
+    .music-link:nth-child(1) {
+        top: 100px; 
+    }
+    .music-link:nth-child(2) {
+        top: 400px; /* 첫 번째 카드 아래에 위치하도록 아래로 이동 */
+    }
+}
